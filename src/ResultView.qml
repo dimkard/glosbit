@@ -124,30 +124,37 @@ Kirigami.ScrollablePage {
           spacing: Kirigami.Units.gridUnit * 4
 
           Column {
-              width: parent.width
-
+              width: root.width
               Rectangle {
-                width: parent.width
-                  Text {
-                      width: parent.width
-                      text: first_text
-                      color: Kirigami.Theme.textColor
-                      wrapMode: Text.WordWrap
-        //              font: Kirigami.Theme.defaultFont
-                      font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
+                  clip: false
+                  color: "transparent"
+                  width: root.width
+                  height: (first.contentHeight + second.contentHeight)
+                  
+                  Column {
+                        id: textColumn
+                        width: root.width                        
 
-                  }
-              }
-              Rectangle {
-                width: parent.width
-                  Text {
-                      width: parent.width
-                      text: second_text
-                      color: Kirigami.Theme.textColor
-                      wrapMode: Text.WordWrap
-        //              font: Kirigami.Theme.defaultFont
-                      font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
-                  }
+                        TextEdit{
+                            id: first
+                            text: first_text
+                            color: Kirigami.Theme.textColor
+                            wrapMode: Text.Wrap
+                            width: root.width
+                //              font: Kirigami.Theme.defaultFont
+//                             font.pointSize: Kirigami.Theme.defaultFont.pointSize * 1.2
+
+                        }
+                        TextEdit{
+                            id: second
+                            text: second_text
+                            width: root.width
+                            color: Kirigami.Theme.textColor
+                            wrapMode: Text.Wrap
+                //              font: Kirigami.Theme.defaultFont
+//                             font.pointSize: Kirigami.Theme.defaultFont.pointSize * 1.2
+                        }
+                    }
               }
           }
       }
