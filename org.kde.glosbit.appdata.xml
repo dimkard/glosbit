@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>org.kde.glosbit.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3+</project_license>
+  <name>Glosbenext</name>
+  <summary>Dictionary app using glosbe.com data</summary>
+  <description>
+    <p>
+        <ul>
+            <li>Easy translation</li>
+            <li>Examples provided</li>
+        </ul>
+    </p>
+  </description>
+  <url type="bugtracker">https://github.com/dimkard/glosbit</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://glosbe.com/fb_logo.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>glosbit</binary>
+  </provides>
+</component>

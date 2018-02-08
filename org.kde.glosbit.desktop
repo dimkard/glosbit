@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Glosbenext
+Comment=Translate app using glosbe.com
+Exec=glosbit %u
+MimeType=application/x-glosbit;
+Icon=glosbit
+Type=Application
+Terminal=false
+Categories=Qt;KDE;

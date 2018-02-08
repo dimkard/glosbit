@@ -1,0 +1,75 @@
+{
+  "result" : "ok",
+  "tuc" : [ {
+    "phrase" : {
+      "text" : "hello",
+      "language" : "en"
+    },
+    "meanings" : [ {
+      "language" : "en",
+      "text" : "greeting"
+    } ],
+    "meaningId" : 1018047335265658796,
+    "authors" : [ 2695 ]
+  }, {
+    "phrase" : {
+      "text" : "welcome",
+      "language" : "en"
+    },
+    "meanings" : [ {
+      "language" : "en",
+      "text" : "greeting given upon someone&#39;s arrival"
+    }, {
+      "language" : "en",
+      "text" : "A greeting used when someone arrives."
+    } ],
+    "meaningId" : -7811351639167446881,
+    "authors" : [ 81647 ]
+  }, {
+    "phrase" : {
+      "text" : "hi",
+      "language" : "en"
+    },
+    "meaningId" : -7360150960452787107,
+    "authors" : [ 83042 ]
+  }, {
+    "meanings" : [ {
+      "language" : "en",
+      "text" : "hello"
+    }, {
+      "language" : "en",
+      "text" : "welcome"
+    } ],
+    "meaningId" : 1424344869120844659,
+    "authors" : [ 1 ]
+  } ],
+  "phrase" : "witaj",
+  "from" : "pl",
+  "dest" : "en",
+  "authors" : {
+    "1" : {
+      "U" : "http://en.wiktionary.org",
+      "id" : 1,
+      "N" : "en.wiktionary.org",
+      "url" : "https://glosbe.com/source/1"
+    },
+    "83042" : {
+      "U" : "",
+      "id" : 83042,
+      "N" : "Dbnary: Wiktionary as Linguistic Linked Open Data",
+      "url" : "https://glosbe.com/source/83042"
+    },
+    "2695" : {
+      "U" : "http://dumps.wikimedia.org/enwiktionary/latest/enwiktionary-latest-pages-articles.xml.bz2",
+      "id" : 2695,
+      "N" : "Wiktionary",
+      "url" : "https://glosbe.com/source/2695"
+    },
+    "81647" : {
+      "U" : "",
+      "id" : 81647,
+      "N" : "Translations of Former PanLem Expressions",
+      "url" : "https://glosbe.com/source/81647"
+    }
+  }
+} 
