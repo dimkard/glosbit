@@ -61,7 +61,7 @@ Kirigami.ApplicationWindow {
             Controls.Label  {
                 width: drawer.width
                 text: qsTr("Settings")
-            }      
+            }
         }
     }
 
@@ -75,12 +75,10 @@ Kirigami.ApplicationWindow {
             title: qsTr("Search")
 
             onGosearch: {
-                console.log("Go Search reached!")
                 pageStack.push(translationComponent, {search_string: search_string})
             }
 
             onGoright: {
-                console.log("Search right")
                 root.pageStack.push(translationComponent)
             }
         }
@@ -96,21 +94,24 @@ Kirigami.ApplicationWindow {
             type: "translation"
 
             onGoleft: {
-                console.log("Translation left")
+                root.pageStack.pop(translationComponent)
+            }
+
+            onGoup: {
+                root.pageStack.pop(exampleComponent)
                 root.pageStack.pop(translationComponent)
             }
 
             onGoright: {
-                console.log("Translation right")
                 root.pageStack.push(exampleComponent,{search_string: search_string})
-             }
+            }
         }
 
     }
     
     Component {
         id: exampleComponent
-    
+
         ResultView {
             id: example
             type: "example"
@@ -118,10 +119,14 @@ Kirigami.ApplicationWindow {
             title: qsTr("Example")
 
             onGoleft: {
-                console.log("Example left")
                 root.pageStack.pop(exampleComponent)
             }
-            onGoright: { console.log("Example right") }
+
+            onGoup: {
+                root.pageStack.pop(exampleComponent)
+                root.pageStack.pop(translationComponent)
+            }
+
         }
     }
 }

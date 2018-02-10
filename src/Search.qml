@@ -58,17 +58,17 @@ Kirigami.ScrollablePage {
 
     Connections {
         target: searchRowButton
-    
+
         onClicked: {
             gosearch()
-        }        
+        }
     }
 
     actions {
         main: Kirigami.Action {
-           iconName: "go-up"
-           text: qsTr("Home")
-         }
+            iconName: "go-up"
+            text: qsTr("Home")
+        }
 
         left: Kirigami.Action {
             iconName: "go-previous"
@@ -85,7 +85,7 @@ Kirigami.ScrollablePage {
         id: searchRow
 
         anchors.centerIn: parent
-        spacing: Kirigami.Units.gridUnit * 2
+        spacing: Kirigami.Units.gridUnit
 
         Controls.TextField {
             id: searchField
@@ -94,6 +94,11 @@ Kirigami.ScrollablePage {
             placeholderText: qsTr("Search...")
             Component.onCompleted: forceActiveFocus()
 
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                    searchRowButton.clicked();
+                }
+            }
             Connections {
                 ignoreUnknownSignals: true
                 target: searchPage

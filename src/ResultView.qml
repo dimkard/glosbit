@@ -29,9 +29,9 @@ Kirigami.ScrollablePage {
     property string type: "" // or "example"
     property string search_string
 
-    //    anchors.centerIn: parent
     signal goleft
     signal goright
+    signal goup
 
     Connections {
         target: actions.left
@@ -39,6 +39,7 @@ Kirigami.ScrollablePage {
         onTriggered: {
             goleft()
         }
+
     }
 
     Connections {
@@ -47,10 +48,21 @@ Kirigami.ScrollablePage {
         onTriggered: {
             goright()
         }
+
+    }
+
+    Connections {
+        target: actions.main
+
+        onTriggered: {
+            goup()
+        }
     }
 
     actions {
         main: Kirigami.Action {
+            id: up
+
             iconName: "go-up"
             text: qsTr("Home")
         }
@@ -72,7 +84,6 @@ Kirigami.ScrollablePage {
         id: resultsView
         property alias type: root.type
 
-        //        anchors { fill: parent }
         spacing: Kirigami.Units.gridUnit*2
         model: resultsModel
         delegate: examplesDelegate//examplesDelegate// //TODO: make conditional by type
@@ -116,11 +127,10 @@ Kirigami.ScrollablePage {
             source_text: first_text
             target_text: second_text
         }
-   }
+    }
 
 
     Component.onCompleted: {
         Utils.getModelData(root.search_string, root.type, resultsModel);
-        console.log (root.type + " onCompleted");
     }
 }

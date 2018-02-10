@@ -25,8 +25,8 @@ import org.kde.kirigami 2.0 as Kirigami
 Main {
     id: root
 
-//    header: Kirigami.ToolBarApplicationHeader {
-//    }
+    //    header: Kirigami.ToolBarApplicationHeader {
+    //    }
 
     contextDrawer: null
     pageStack.defaultColumnWidth: pageStack.width > Kirigami.Units.gridUnit * 25 ? pageStack.width / 2 : pageStack.width

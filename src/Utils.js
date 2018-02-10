@@ -1,6 +1,5 @@
 function getModelData(word, modelType, model) {
 
-    console.log(modelType + " for " + word);
     var xmlhttp = new XMLHttpRequest();
     var url;
     if (modelType === "translation") {
@@ -68,7 +67,6 @@ function setTranslations(response, model) {
 }
 
 function setExamples(response, model) {
-    console.log("Populating examples model...");
 
     var arr = [];
     var examples = [];
@@ -78,7 +76,7 @@ function setExamples(response, model) {
             if(arr["result"].toString() === "ok") {
                 if(arr.hasOwnProperty("examples")) {
                     examples = arr["examples"];
-                    console.log(examples.length);
+
                     if (examples.length >0) {
                         for (var i=0; i< examples.length; i++) {
                             if(examples[i].hasOwnProperty("first") && examples[i].hasOwnProperty("second")  ) {
