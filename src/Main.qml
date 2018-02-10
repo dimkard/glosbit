@@ -25,7 +25,6 @@ import org.kde.kirigami 2.0 as Kirigami
 Kirigami.ApplicationWindow {
     id: root
 
-
     globalDrawer: Kirigami.GlobalDrawer {
         id: drawer
         title: "Glosbenext"
@@ -71,7 +70,7 @@ Kirigami.ApplicationWindow {
 
     Component {
         id: searchComponent
-        
+
         Search {
             title: qsTr("Search")
 

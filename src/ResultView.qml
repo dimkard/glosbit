@@ -29,7 +29,7 @@ Kirigami.ScrollablePage {
     property string type: "" // or "example"
     property string search_string
 
-//    anchors.centerIn: parent
+    //    anchors.centerIn: parent
     signal goleft
     signal goright
 
@@ -51,9 +51,9 @@ Kirigami.ScrollablePage {
 
     actions {
         main: Kirigami.Action {
-           iconName: "go-up"
-           text: qsTr("Home")
-         }
+            iconName: "go-up"
+            text: qsTr("Home")
+        }
 
         left: Kirigami.Action {
             id: prev
@@ -72,8 +72,8 @@ Kirigami.ScrollablePage {
         id: resultsView
         property alias type: root.type
 
-//        anchors { fill: parent }
-        spacing: Kirigami.Units.gridUnit * 2
+        //        anchors { fill: parent }
+        spacing: Kirigami.Units.gridUnit*2
         model: resultsModel
         delegate: examplesDelegate//examplesDelegate// //TODO: make conditional by type
 
@@ -93,72 +93,30 @@ Kirigami.ScrollablePage {
     }
 
     Component {
-      id: translationsDelegate
+        id: translationsDelegate
 
-      Column {
-          id: translationsColumn
+        ResultDelegate {
+            id: translationsRect
 
-          anchors {
-//              left: parent.left
-//              right: parent.right
-              margins: Kirigami.Units.smallSpacing
-          }
-
-          spacing: Kirigami.Units.gridUnit * 2
-
-          Text { text: phrase_text }
-          Text { text: meaning_text }
-      }
+            result_type: "translation"
+            containerWidth: root.width
+            source_text: phrase_text
+            target_text: meaning_text
+        }
     }
 
     Component {
-      id: examplesDelegate
-      Column {
-          id: examplesColumn
+        id: examplesDelegate
 
-          anchors {
+        ResultDelegate {
+            id: exampleRect
 
-              margins: Kirigami.Units.smallSpacing
-          }
-
-          spacing: Kirigami.Units.gridUnit * 4
-
-          Column {
-              width: root.width
-              Rectangle {
-                  clip: false
-                  color: "transparent"
-                  width: root.width
-                  height: (first.contentHeight + second.contentHeight)
-                  
-                  Column {
-                        id: textColumn
-                        width: root.width                        
-
-                        TextEdit{
-                            id: first
-                            text: first_text
-                            color: Kirigami.Theme.textColor
-                            wrapMode: Text.Wrap
-                            width: root.width
-                //              font: Kirigami.Theme.defaultFont
-//                             font.pointSize: Kirigami.Theme.defaultFont.pointSize * 1.2
-
-                        }
-                        TextEdit{
-                            id: second
-                            text: second_text
-                            width: root.width
-                            color: Kirigami.Theme.textColor
-                            wrapMode: Text.Wrap
-                //              font: Kirigami.Theme.defaultFont
-//                             font.pointSize: Kirigami.Theme.defaultFont.pointSize * 1.2
-                        }
-                    }
-              }
-          }
-      }
-    }
+            result_type: "example"
+            containerWidth: root.width
+            source_text: first_text
+            target_text: second_text
+        }
+   }
 
 
     Component.onCompleted: {

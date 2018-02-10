@@ -24,12 +24,11 @@ import org.kde.kirigami 2.0 as Kirigami
 
 Kirigami.ScrollablePage {
     id: searchPage
-    
+
     property alias search_string: searchField.text
     signal gosearch
     signal goleft
     signal goright
-
 
 //    anchors.centerIn: parent
     Connections {
@@ -75,12 +74,14 @@ Kirigami.ScrollablePage {
 
     Row {
         id: searchRow
-        
+
         anchors.centerIn: parent
         spacing: Kirigami.Units.gridUnit * 2
 
         Controls.TextField {
             id: searchField
+
+            focus: true
             placeholderText: qsTr("Search...")
         }
         Controls.Button {

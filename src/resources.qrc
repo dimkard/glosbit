@@ -8,5 +8,6 @@
         <file alias="glosbit.svg">glosbit.svg</file>
         <file>ResultView.qml</file>
         <file>Utils.js</file>
+        <file>ResultDelegate.qml</file>
     </qresource>
 </RCC>
