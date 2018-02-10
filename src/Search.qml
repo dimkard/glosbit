@@ -30,7 +30,16 @@ Kirigami.ScrollablePage {
     signal goleft
     signal goright
 
-//    anchors.centerIn: parent
+    signal shown()
+
+    Timer {
+        interval: 0
+        running: true
+        onTriggered: {
+            searchPage.shown()
+        }
+    }
+
     Connections {
         target: actions.left
 
@@ -83,6 +92,15 @@ Kirigami.ScrollablePage {
 
             focus: true
             placeholderText: qsTr("Search...")
+            Component.onCompleted: forceActiveFocus()
+
+            Connections {
+                ignoreUnknownSignals: true
+                target: searchPage
+                onShown: {
+                    searchField.forceActiveFocus()
+                }
+            }
         }
         Controls.Button {
             id: searchRowButton
