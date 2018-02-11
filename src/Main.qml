@@ -27,7 +27,7 @@ Kirigami.ApplicationWindow {
 
     globalDrawer: Kirigami.GlobalDrawer {
         id: drawer
-        title: "Glosbenext"
+        title: "Glosbit"
         titleIcon: "glosbit"
         contentItem.implicitWidth: Math.min (Kirigami.Units.gridUnit * 15, root.width * 0.8)
 

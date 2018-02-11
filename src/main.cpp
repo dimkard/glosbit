@@ -36,7 +36,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
     QCoreApplication::setOrganizationName("KDE");
     QCoreApplication::setOrganizationDomain("kde.org");
-    QCoreApplication::setApplicationName("Glosbenext");
+    QCoreApplication::setApplicationName("Glosbit");
 
     QQmlApplicationEngine engine;
 

@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Glosbenext
+Name=Glosbit
 Comment=Translate app using glosbe.com
 Exec=glosbit %u
 MimeType=application/x-glosbit;

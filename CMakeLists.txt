@@ -7,7 +7,7 @@ set(QT_MIN_VERSION "5.5.0")
 ################# Disallow in-source build #################
 
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
-   message(FATAL_ERROR "Glosbenext requires an out of source build. Please create a separate build directory.")
+   message(FATAL_ERROR "Glosbit requires an out of source build. Please create a separate build directory.")
 endif()
 
 
