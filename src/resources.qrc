@@ -6,6 +6,11 @@
         <file alias="Search.qml">Search.qml</file>
         <file alias="qtquickcontrols2.conf">android/qtquickcontrols2.conf</file>
         <file alias="glosbit.svg">glosbit.svg</file>
+        <file alias="go-home-large-16.svg">icons/go-home-large-16.svg</file>
+        <file alias="go-home-large-dark-16.svg">icons/go-home-large-dark-16.svg</file>
+        <file alias="go-home-16.svg">icons/go-home-16.svg</file>
+        <file alias="go-home-dark-16.svg">icons/go-home-dark-16.svg</file>
+        <file alias="system-search-dark-24.svg">icons/system-search-dark-24.svg</file>
         <file>ResultView.qml</file>
         <file>Utils.js</file>
         <file>ResultDelegate.qml</file>

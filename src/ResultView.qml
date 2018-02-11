@@ -63,7 +63,7 @@ Kirigami.ScrollablePage {
         main: Kirigami.Action {
             id: up
 
-            iconName: "go-up"
+            iconName: "qrc:///go-home-large-16.svg"
             text: qsTr("Home")
         }
 

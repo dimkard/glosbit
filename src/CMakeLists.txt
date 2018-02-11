@@ -21,4 +21,4 @@ else()
 endif()
 
 #include(KF5KirigamiMacros.cmake)
-# kirigami_package_breeze_icons(ICONS go-home)
+#kirigami_package_breeze_icons(ICONS system-search)
