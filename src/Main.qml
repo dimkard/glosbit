@@ -28,6 +28,8 @@ Kirigami.ApplicationWindow {
     globalDrawer: Kirigami.GlobalDrawer {
         id: drawer
 
+
+
         Timer {
             interval: 1
             running: true
@@ -39,16 +41,16 @@ Kirigami.ApplicationWindow {
 
         function addActions() {
            var subc = Qt.createComponent("DictionaryAction.qml");
-           var sub0 = subc.createObject(drawer, {text: "From"});
-           var sub1 = subc.createObject(drawer, {text: "To"});
+           var sub0 = subc.createObject(drawer, {text: "From", level:0});
+           var sub1 = subc.createObject(drawer, {text: "To",level:0});
            var actionsList = [sub0, sub1];
            var fromChildrenList = [];
            var toChildrenList = [];
            for (var i=0; i<Dicts.glosbit.dictionary_amt; ++i) {
 //               sub0_n = subc.createObject(drawer, {text: Dicts.glosbit.dictionaries[i]});
-               console.log(Dicts.glosbit.dictionary_list[i]);
-               fromChildrenList[i] = subc.createObject(drawer, {text: Dicts.glosbit.dictionary_list[i], checkable: true});
-               toChildrenList[i] = subc.createObject(drawer, {text: Dicts.glosbit.dictionary_list[i], checkable: true});
+//               console.log(Dicts.glosbit.dictionary_list[i]);
+               fromChildrenList[i] = subc.createObject(drawer, {level: 1, text: Dicts.glosbit.dictionary_list[i].language, action_index: i });
+               toChildrenList[i] = subc.createObject(drawer, {level: 1, text: Dicts.glosbit.dictionary_list[i].language, action_index: i });
 
            }
 
