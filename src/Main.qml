@@ -21,15 +21,56 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.0 as Controls
 import org.kde.kirigami 2.0 as Kirigami
-
+import "./dictionaries.js" as Dicts
 Kirigami.ApplicationWindow {
     id: root
 
     globalDrawer: Kirigami.GlobalDrawer {
         id: drawer
+
+        Timer {
+            interval: 1
+            running: true
+            onTriggered: {
+                drawer.addActions()
+            }
+        }
+
+
+        function addActions() {
+           var subc = Qt.createComponent("DictionaryAction.qml");
+           var sub0 = subc.createObject(drawer, {text: "From"});
+           var sub1 = subc.createObject(drawer, {text: "To"});
+           var actionsList = [sub0, sub1];
+           var fromChildrenList = [];
+           var toChildrenList = [];
+           for (var i=0; i<Dicts.glosbit.dictionary_amt; ++i) {
+//               sub0_n = subc.createObject(drawer, {text: Dicts.glosbit.dictionaries[i]});
+               console.log(Dicts.glosbit.dictionary_list[i]);
+               fromChildrenList[i] = subc.createObject(drawer, {text: Dicts.glosbit.dictionary_list[i], checkable: true});
+               toChildrenList[i] = subc.createObject(drawer, {text: Dicts.glosbit.dictionary_list[i], checkable: true});
+
+           }
+
+           actions = actionsList;
+           actions[0].children = fromChildrenList;
+           actions[1].children = toChildrenList;
+        }
         title: "Glosbit"
         titleIcon: "glosbit"
         contentItem.implicitWidth: Math.min (Kirigami.Units.gridUnit * 15, root.width * 0.8)
+//        actions: [
+//            Kirigami.Action {
+//                id: fromDictionaries
+
+//                text: "From"
+//            },
+//            Kirigami.Action {
+//                id: toDictionaries
+
+//                text: "To"
+//            }
+//        ]
 
         topContent: Column {
             anchors {
@@ -40,33 +81,11 @@ Kirigami.ApplicationWindow {
             
             spacing: Kirigami.Units.gridUnit * 2
 
-            Kirigami.Heading {
-                text: qsTr("Options")
-                anchors {
-                    left: parent.left
-                    margins: Kirigami.Units.smallSpacing
-                }
-            }
-
-            Controls.Label  {
-                width: drawer.width
-                text: qsTr("Source")
-            }
-
-            Controls.Label  {
-                width: drawer.width
-                text: qsTr("Destination")
-            }
-            
-            Controls.Label  {
-                width: drawer.width
-                text: qsTr("Settings")
-            }
         }
+
     }
 
     pageStack.initialPage: [searchComponent]
-
 
     Component {
         id: searchComponent
@@ -129,4 +148,5 @@ Kirigami.ApplicationWindow {
 
         }
     }
+
 }

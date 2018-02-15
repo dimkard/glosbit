@@ -14,5 +14,7 @@
         <file>ResultView.qml</file>
         <file>Utils.js</file>
         <file>ResultDelegate.qml</file>
+        <file>DictionaryAction.qml</file>
+        <file>dictionaries.js</file>
     </qresource>
 </RCC>
