@@ -1,12 +1,12 @@
-function getModelData(word, modelType, model) {
+function getModelData(word, modelType, model, from, to) {
 
     var xmlhttp = new XMLHttpRequest();
     var url;
     if (modelType === "translation") {
-        url = "https://glosbe.com/gapi/translate?from=spa&dest=eng&format=json&phrase="+ word;
+        url = "https://glosbe.com/gapi/translate?from="+from+"&dest="+to+"&format=json&phrase="+ word;
     }
     else {
-        url = "https://glosbe.com/gapi/tm?from=spa&dest=eng&format=json&page=1&phrase="+ word;
+        url = "https://glosbe.com/gapi/tm?from="+from+"&dest="+to+"&format=json&page=1&phrase="+ word;
     }
 
 

@@ -27,6 +27,8 @@ Kirigami.ScrollablePage {
     id: root
 
     property string type: "" // or "example"
+    property string from: ""
+    property string to: ""
     property string search_string
 
     signal goleft
@@ -131,6 +133,6 @@ Kirigami.ScrollablePage {
 
 
     Component.onCompleted: {
-        Utils.getModelData(root.search_string, root.type, resultsModel);
+        Utils.getModelData(root.search_string, root.type, resultsModel, from, to);
     }
 }
