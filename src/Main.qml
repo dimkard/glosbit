@@ -24,64 +24,34 @@ import org.kde.kirigami 2.0 as Kirigami
 import "./dictionaries.js" as Dicts
 Kirigami.ApplicationWindow {
     id: root
+
     property string from: ""
     property string to: ""
 
-    function selectDictionary (level, type, dictionaryIndex) {
-        var dictionary = Dicts.glosbit.dictionary_list[dictionaryIndex];
-        showPassiveNotification(type === "from" ? qsTr("From: ") + dictionary.language : qsTr("To: ") + dictionary.language);
-        if(type === "from") {
-            root.from = dictionary.code;
-        }
-        else {
-            root.to= dictionary.code;
-        }
-    }
+
     globalDrawer: Kirigami.GlobalDrawer {
         id: drawer
 
-        Timer {
-            interval: 1
-            running: true
-            onTriggered: {
-                drawer.addActions()
-            }
-        }
-
         function addActions() {
-           var subc = Qt.createComponent("DictionaryAction.qml");
-           var sub0 = subc.createObject(drawer, {text: "From", level:0});
-           var sub1 = subc.createObject(drawer, {text: "To",level:0});
+           var sub0 = dictionaryAction.createObject(drawer, {text: "From", level:0});
+           var sub1 = dictionaryAction.createObject(drawer, {text: "To",level:0});
            var actionsList = [sub0, sub1];
            var fromChildrenList = [];
            var toChildrenList = [];
 
-           for (var i=0; i<Dicts.glosbit.dictionary_amt; ++i) {
-//               sub0_n = subc.createObject(drawer, {text: Dicts.glosbit.dictionaries[i]});
-//               console.log(Dicts.glosbit.dictionary_list[i]);
-               fromChildrenList[i] = subc.createObject(drawer, {type: "from", level: 1, rootObj: root, rootFunction: "selectDictionary", text: Dicts.glosbit.dictionary_list[i].language, action_index: i });
-               toChildrenList[i] = subc.createObject(drawer, {type: "to", level: 1, rootObj: root, rootFunction: "selectDictionary", text: Dicts.glosbit.dictionary_list[i].language, action_index: i });
+           for (var i=0; i<Dicts.glosbit.dictionary_amt; ++i) {            
+               fromChildrenList[i] = dictionaryAction.createObject(drawer, { type: "from", level: 1, text: Dicts.glosbit.dictionary_list[i].language, action_index: i });
+               toChildrenList[i] = dictionaryAction.createObject(drawer, { type: "to", level: 1, text: Dicts.glosbit.dictionary_list[i].language, action_index: i });
            }
 
            actions = actionsList;
            actions[0].children = fromChildrenList;
            actions[1].children = toChildrenList;
         }
+
         title: "Glosbit"
         titleIcon: "glosbit"
         contentItem.implicitWidth: Math.min (Kirigami.Units.gridUnit * 15, root.width * 0.8)
-//        actions: [
-//            Kirigami.Action {
-//                id: fromDictionaries
-
-//                text: "From"
-//            },
-//            Kirigami.Action {
-//                id: toDictionaries
-
-//                text: "To"
-//            }
-//        ]
 
         topContent: Column {
             anchors {
@@ -89,14 +59,40 @@ Kirigami.ApplicationWindow {
                 right: parent.right
                 margins: Kirigami.Units.smallSpacing
             }
-            
+
             spacing: Kirigami.Units.gridUnit * 2
 
         }
 
+        Component.onCompleted: drawer.addActions()
     }
 
     pageStack.initialPage: [searchComponent]
+
+    Component {
+        id: dictionaryAction
+
+        Kirigami.Action {
+            property string action_index: ""
+            property int level: 0
+            property string type: "" // from,to
+
+            text: ""
+
+            onTriggered: {
+                if(level === 1) {
+                    var dictionary = Dicts.glosbit.dictionary_list[action_index];
+                    showPassiveNotification(type === "from" ? qsTr("From: ") + dictionary.language : qsTr("To: ") + dictionary.language);
+                    if(type === "from") {
+                        root.from = dictionary.code;
+                    }
+                    else {
+                        root.to= dictionary.code;
+                    }
+                }
+            }
+        }
+    }
 
     Component {
         id: searchComponent
@@ -146,6 +142,7 @@ Kirigami.ApplicationWindow {
 
         ResultView {
             id: example
+
             type: "example"
             from: root.from
             to: root.to
@@ -159,7 +156,6 @@ Kirigami.ApplicationWindow {
                 root.pageStack.pop(exampleComponent)
                 root.pageStack.pop(translationComponent)
             }
-
         }
     }
 
