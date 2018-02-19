@@ -20,12 +20,17 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.0 as Controls
-import org.kde.kirigami 2.0 as Kirigami
+import org.kde.kirigami 2.1 as Kirigami
+import "./dictionaries.js" as Dicts
 
 Kirigami.ScrollablePage {
     id: searchPage
 
+    property variant palette
+    property int from
+    property int to
     property alias search_string: searchField.text
+
     signal gosearch
     signal goleft
     signal goright
@@ -81,35 +86,46 @@ Kirigami.ScrollablePage {
         }
     }
 
-    Row {
-        id: searchRow
 
-        anchors.centerIn: parent
+    mainItem:
+        Column {
         spacing: Kirigami.Units.gridUnit
 
-        Controls.TextField {
-            id: searchField
+        Controls.Label {
+            text:  qsTr(Dicts.glosbit.dictionary_list[searchPage.from].language + " > " + Dicts.glosbit.dictionary_list[searchPage.to].language)
+            color: Kirigami.Theme.textColor
+            font.pixelSize: Kirigami.Units.gridUnit
+       }
 
-            focus: true
-            placeholderText: qsTr("Search...")
-            Component.onCompleted: forceActiveFocus()
+        Row {
+            id: searchRow
 
-            Keys.onPressed: {
-                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                    searchRowButton.clicked();
+            spacing: Kirigami.Units.gridUnit
+
+            Controls.TextField {
+                id: searchField
+
+                focus: true
+                placeholderText: qsTr("Search...")
+                Component.onCompleted: forceActiveFocus()
+
+                Keys.onPressed: {
+                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                        searchRowButton.clicked();
+                    }
+                }
+                Connections {
+                    ignoreUnknownSignals: true
+                    target: searchPage
+                    onShown: {
+                        searchField.forceActiveFocus()
+                    }
                 }
             }
-            Connections {
-                ignoreUnknownSignals: true
-                target: searchPage
-                onShown: {
-                    searchField.forceActiveFocus()
-                }
+            Controls.Button {
+                id: searchRowButton
+                text: qsTr("Go")
             }
-        }
-        Controls.Button {
-            id: searchRowButton
-            text: qsTr("Go")
         }
     }
 }

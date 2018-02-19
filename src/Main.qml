@@ -22,11 +22,12 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.0 as Controls
 import org.kde.kirigami 2.0 as Kirigami
 import "./dictionaries.js" as Dicts
+
 Kirigami.ApplicationWindow {
     id: root
 
-    property string from: ""
-    property string to: ""
+    property int fromIndex: 2
+    property int toIndex: 1
 
 
     globalDrawer: Kirigami.GlobalDrawer {
@@ -84,10 +85,10 @@ Kirigami.ApplicationWindow {
                     var dictionary = Dicts.glosbit.dictionary_list[action_index];
                     showPassiveNotification(type === "from" ? qsTr("From: ") + dictionary.language : qsTr("To: ") + dictionary.language);
                     if(type === "from") {
-                        root.from = dictionary.code;
+                        root.fromIndex = action_index;
                     }
                     else {
-                        root.to= dictionary.code;
+                        root.toIndex= action_index;
                     }
                 }
             }
@@ -98,7 +99,10 @@ Kirigami.ApplicationWindow {
         id: searchComponent
 
         Search {
+            from: root.fromIndex
+            to: root.toIndex
             title: qsTr("Search")
+
 
             onGosearch: {
                 pageStack.push(translationComponent, {search_string: search_string})
@@ -118,8 +122,8 @@ Kirigami.ApplicationWindow {
 
             title: qsTr("Translation")
             type: "translation"
-            from: root.from
-            to: root.to
+            from: root.fromIndex
+            to: root.toIndex
 
             onGoleft: {
                 root.pageStack.pop(translationComponent)
@@ -144,8 +148,8 @@ Kirigami.ApplicationWindow {
             id: example
 
             type: "example"
-            from: root.from
-            to: root.to
+            from: root.fromIndex
+            to: root.toIndex
             title: qsTr("Example")
 
             onGoleft: {

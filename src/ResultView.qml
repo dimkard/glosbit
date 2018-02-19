@@ -22,13 +22,14 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.0 as Controls
 import org.kde.kirigami 2.0 as Kirigami
 import "./Utils.js" as Utils
+import "./dictionaries.js" as Dicts
 
 Kirigami.ScrollablePage {
     id: root
 
     property string type: "" // or "example"
-    property string from: ""
-    property string to: ""
+    property int from
+    property int to
     property string search_string
 
     signal goleft
@@ -82,8 +83,9 @@ Kirigami.ScrollablePage {
         }
     }
 
-    ListView {
+    mainItem: ListView {
         id: resultsView
+
         property alias type: root.type
 
         spacing: Kirigami.Units.gridUnit*2
@@ -131,8 +133,7 @@ Kirigami.ScrollablePage {
         }
     }
 
-
     Component.onCompleted: {
-        Utils.getModelData(root.search_string, root.type, resultsModel, from, to);
+        Utils.getModelData(root.search_string, root.type, resultsModel, Dicts.glosbit.dictionary_list[from].code, Dicts.glosbit.dictionary_list[to].code);
     }
 }
