@@ -51,7 +51,7 @@ Kirigami.ApplicationWindow {
         }
 
         title: "Glosbit"
-        titleIcon: "glosbit"
+        titleIcon: "qrc:///glosbit.svg"
         contentItem.implicitWidth: Math.min (Kirigami.Units.gridUnit * 15, root.width * 0.8)
 
         topContent: Column {
