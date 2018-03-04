@@ -1,0 +1,30 @@
+Create Android apk
+
+Replace /examples/galleryapp/ data of kirigami sources to src/android of glosbit.
+
+Create environment:
+# only for openssl build export ANDROID_NDK_ROOT=/home/myuser/Downloads/android-ndk-r15c/
+export ANDROID_NDK=/home/myuser/Development/android/android-ndk-r16b 
+export ANDROID_SDK_ROOT=/home/myuser/Android/Sdk/
+export Qt5_android=/home/myuser/Qt/5.10.1/android_armv7
+export PATH=$ANDROID_SDK_ROOT/platform-tools/:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export ANDROID_PLATFORM=android-24
+
+--- this is glosbit ----    
+cmake .. \
+    -DQTANDROID_EXPORTED_TARGET=glosbit \
+    -DBUILD_EXAMPLES=on\
+    -DANDROID_APK_DIR=../examples/galleryapp \
+    -DECM_DIR=/usr/share/ECM/cmake \
+    -DCMAKE_TOOLCHAIN_FILE=/usr/share/ECM/toolchain/Android.cmake \
+    -DECM_ADDITIONAL_FIND_ROOT_PATH=/home/myuser/Qt/5.10.1/android_armv7 \
+    -DCMAKE_PREFIX_PATH=/home/myuser/Qt/5.10.1/android_armv7/include/QtCore \
+    -DANDROID_NDK=/home/myuser/Development/android/android-ndk-r16b \
+    -DANDROID_SDK_ROOT=/home/myuser/Android/Sdk \
+    -DANDROID_SDK_BUILD_TOOLS_REVISION=24.0.3  \
+    -DCMAKE_INSTALL_PREFIX=/home/myuser/Development/android/kirigami-android
+
+make -j4
+make install
+make -j4 create-apk-glosbit

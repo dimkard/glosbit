@@ -4,12 +4,14 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3+</project_license>
   <name>Glosbit</name>
-  <summary>Dictionary app using glosbe.com data</summary>
+  <summary>=Dictionary application powered by glosbe.com</summary>
   <description>
     <p>
         <ul>
-            <li>Easy translation</li>
-            <li>Examples provided</li>
+            <li>Easy word translation</li>
+            <li>Example phrases provided</li>
+            <li>Needs internet connection</li>
+            <li>Data from glosbe.com</li>
         </ul>
     </p>
   </description>

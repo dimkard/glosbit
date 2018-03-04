@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="contents/ui/desktopmain.qml">../gallerydata/contents/ui/desktopmain.qml</file>
+        <file alias="contents/ui/mobilemain.qml">../gallerydata/contents/ui/mobilemain.qml</file>
+        <file alias="contents/ui/Main.qml">../gallerydata/contents/ui/Main.qml</file>
+        <file alias="contents/ui/Search.qml">../gallerydata/contents/ui/Search.qml</file>
+        <file alias="qtquickcontrols2.conf">qtquickcontrols2.conf</file>
+        <file alias="contents/ui/glosbit.svg">../gallerydata/contents/ui/glosbit.svg</file>
+        <file alias="go-home-large-16.svg">../gallerydata/contents/ui/icons/go-home-large-16.svg</file>
+        <file alias="go-home-large-dark-16.svg">../gallerydata/contents/ui/icons/go-home-large-dark-16.svg</file>
+        <file alias="go-home-16.svg">../gallerydata/contents/ui/icons/go-home-16.svg</file>
+        <file alias="go-home-dark-16.svg">../gallerydata/contents/ui/icons/go-home-dark-16.svg</file>
+        <file alias="system-search-dark-24.svg">../gallerydata/contents/ui/icons/system-search-dark-24.svg</file>
+        <file alias="contents/ui/ResultView.qml">../gallerydata/contents/ui/ResultView.qml</file>
+        <file alias="contents/ui/Utils.js">../gallerydata/contents/ui/Utils.js</file>
+        <file alias="contents/ui/ResultDelegate.qml">../gallerydata/contents/ui/ResultDelegate.qml</file>
+        <file alias="contents/ui/dictionaries.js">../gallerydata/contents/ui/dictionaries.js</file>
+    </qresource>
+</RCC>

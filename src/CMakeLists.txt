@@ -15,9 +15,9 @@ target_link_libraries(glosbit Qt5::Core  Qt5::Qml Qt5::Quick Qt5::Svg KF5::Confi
 install(TARGETS glosbit ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 if (ANDROID)
-    install(FILES glosbit.svg DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kirigami.2/icons)
+    install(FILES contents/ui/glosbit.svg DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kirigami.2/icons)
 else()
-    install(FILES glosbit.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
+    install(FILES contents/ui/glosbit.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
 endif()
 
 #include(KF5KirigamiMacros.cmake)

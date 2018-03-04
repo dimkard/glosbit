@@ -6,7 +6,7 @@
         </shape>
     </item>
     <item>
-         <bitmap android:src="@drawable/splashscreen"
+         <bitmap android:src="@drawable/kirigami_splash"
         android:gravity="center"/>
     </item>
 </layer-list>
