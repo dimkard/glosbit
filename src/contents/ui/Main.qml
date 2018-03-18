@@ -51,7 +51,7 @@ Kirigami.ApplicationWindow {
         }
 
         title: "Glosbit"
-        titleIcon: "qrc:///glosbit.svg"
+//        titleIcon: "qrc:///glosbit.svg"
         contentItem.implicitWidth: Math.min (Kirigami.Units.gridUnit * 15, root.width * 0.8)
 
         topContent: Column {
@@ -162,5 +162,12 @@ Kirigami.ApplicationWindow {
             }
         }
     }
-
+    
+    footer: Controls.Label {
+            text:  qsTr("Powered by glosbe.com")
+            color: Kirigami.Theme.textColor
+            horizontalAlignment:  Text.AlignHCenter
+            width: parent.width - 10
+            font.pixelSize: Kirigami.Units.gridUnit*2/3
+    }
 }

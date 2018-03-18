@@ -5,7 +5,7 @@
         <file alias="Main.qml">contents/ui/Main.qml</file>
         <file alias="Search.qml">contents/ui/Search.qml</file>
         <file alias="qtquickcontrols2.conf">android/qtquickcontrols2.conf</file>
-        <file alias="glosbit.svg">contents/ui/glosbit.svg</file>
+        <!--file alias="glosbit.svg">contents/ui/glosbit.svg</file-->
         <file alias="go-home-large-16.svg">icons/go-home-large-16.svg</file>
         <file alias="go-home-large-dark-16.svg">icons/go-home-large-dark-16.svg</file>
         <file alias="go-home-16.svg">icons/go-home-16.svg</file>

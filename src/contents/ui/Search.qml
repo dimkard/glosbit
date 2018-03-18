@@ -87,16 +87,15 @@ Kirigami.ScrollablePage {
     }
 
 
-    mainItem:
-        Column {
+    mainItem: Column {
         spacing: Kirigami.Units.gridUnit
-
+        
         Controls.Label {
             text:  qsTr(Dicts.glosbit.dictionary_list[searchPage.from].language + " > " + Dicts.glosbit.dictionary_list[searchPage.to].language)
             color: Kirigami.Theme.textColor
             font.pixelSize: Kirigami.Units.gridUnit
-       }
-
+        }
+    
         Row {
             id: searchRow
 
@@ -122,6 +121,7 @@ Kirigami.ScrollablePage {
                     }
                 }
             }
+            
             Controls.Button {
                 id: searchRowButton
                 text: qsTr("Go")
