@@ -40,9 +40,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    if (QString::fromLatin1(qgetenv("QT_QUICK_CONTROLS_STYLE")) == QStringLiteral("org.kde.desktop")) {
+    if (!(QString::fromLatin1(qgetenv("DESKTOP_SESSION")).isEmpty())) {
+        qDebug() << "Desktop";
         engine.load(QUrl(QStringLiteral("qrc:///desktopmain.qml")));
     } else {
+        qDebug() << "Mobile";
         engine.load(QUrl(QStringLiteral("qrc:///mobilemain.qml")));
     }
 
