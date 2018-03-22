@@ -167,7 +167,7 @@ Kirigami.ApplicationWindow {
             text:  qsTr("Powered by glosbe.com")
             color: Kirigami.Theme.textColor
             horizontalAlignment:  Text.AlignHCenter
-            width: parent.width - 10
+            width: parent.width
             font.pixelSize: Kirigami.Units.gridUnit*2/3
     }
 }
