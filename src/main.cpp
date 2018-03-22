@@ -41,10 +41,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     if (!(QString::fromLatin1(qgetenv("DESKTOP_SESSION")).isEmpty())) {
-        qDebug() << "Desktop";
         engine.load(QUrl(QStringLiteral("qrc:///desktopmain.qml")));
-    } else {
-        qDebug() << "Mobile";
+    }
+    else {
         engine.load(QUrl(QStringLiteral("qrc:///mobilemain.qml")));
     }
 

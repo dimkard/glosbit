@@ -25,10 +25,6 @@ import org.kde.kirigami 2.0 as Kirigami
 Main {
     id: root
 
-    //    header: Kirigami.ApplicationHeader {
-    //        headerStyle: Kirigami.ApplicationHeaderStyle.TabBar
-    //    }
-
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
     }
