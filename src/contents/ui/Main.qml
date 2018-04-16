@@ -21,13 +21,14 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.0 as Controls
 import org.kde.kirigami 2.0 as Kirigami
+import org.kde.glosbit 1.0 as Glosbit
 import "./dictionaries.js" as Dicts
 
 Kirigami.ApplicationWindow {
     id: root
 
-    property int fromIndex: 2
-    property int toIndex: 1
+    property string fromIndex:  (glosbitConfig.recentSource) ? glosbitConfig.recentSource : 2
+    property string toIndex:  (glosbitConfig.recentTarget) ? glosbitConfig.recentTarget : 0
 
 
     globalDrawer: Kirigami.GlobalDrawer {
@@ -51,7 +52,6 @@ Kirigami.ApplicationWindow {
         }
 
         title: "Glosbit"
-//        titleIcon: "qrc:///glosbit.svg"
         contentItem.implicitWidth: Math.min (Kirigami.Units.gridUnit * 15, root.width * 0.8)
 
         topContent: Column {
@@ -85,9 +85,11 @@ Kirigami.ApplicationWindow {
                     var dictionary = Dicts.glosbit.dictionary_list[action_index];
                     showPassiveNotification(type === "from" ? qsTr("From: ") + dictionary.language : qsTr("To: ") + dictionary.language);
                     if(type === "from") {
+                        glosbitConfig.recentSource = action_index;
                         root.fromIndex = action_index;
                     }
                     else {
+                        glosbitConfig.recentTarget = action_index;
                         root.toIndex= action_index;
                     }
                 }
@@ -162,12 +164,15 @@ Kirigami.ApplicationWindow {
             }
         }
     }
-    
     footer: Controls.Label {
             text:  qsTr("Powered by glosbe.com")
             color: Kirigami.Theme.textColor
             horizontalAlignment:  Text.AlignHCenter
             width: parent.width
             font.pixelSize: Kirigami.Units.gridUnit*2/3
+    }
+    
+    Glosbit.Config {
+        id: glosbitConfig;
     }
 }

@@ -27,8 +27,8 @@ Kirigami.ScrollablePage {
     id: searchPage
 
     property variant palette
-    property int from
-    property int to
+    property string from
+    property string to
     property alias search_string: searchField.text
 
     signal gosearch

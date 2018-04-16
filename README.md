@@ -16,7 +16,7 @@ kirigami2-dev
 
 mkdir build  
 cd build  
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. (or any other location you may prefer)  
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr ..
 make  
 (sudo) make install  
 

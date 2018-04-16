@@ -9,6 +9,9 @@ set(glosbit_SRCS
 
 qt5_add_resources(RESOURCES resources.qrc)
 
+# Plugin directory
+add_subdirectory(plugins)
+
 add_executable(glosbit ${glosbit_SRCS} ${RESOURCES})
 target_link_libraries(glosbit Qt5::Core  Qt5::Qml Qt5::Quick Qt5::Svg KF5::ConfigCore)
 
