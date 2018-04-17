@@ -113,6 +113,14 @@ Kirigami.ApplicationWindow {
             onGoright: {
                 root.pageStack.push(translationComponent)
             }
+
+            onChangedirection:  {
+                var swap = root.fromIndex;
+                root.fromIndex = root.toIndex;
+                glosbitConfig.recentSource =  root.toIndex;
+                root.toIndex = swap;
+                glosbitConfig.recentTarget = swap;
+            }
         }
     }
 

@@ -34,8 +34,10 @@ Kirigami.ScrollablePage {
     signal gosearch
     signal goleft
     signal goright
-
-    signal shown()
+    signal shown
+    signal openfrom
+    signal opento
+    signal changedirection
 
     Timer {
         interval: 0
@@ -69,6 +71,30 @@ Kirigami.ScrollablePage {
         }
     }
 
+    Connections {
+        target: direction
+
+        onClicked: {
+            changedirection()
+        }
+    }
+
+    //    Connections { //TODO: Implement a recent dictionariies context action set
+    //        target: fromButton
+
+    //        onClicked: {
+    //           openfrom()
+    //        }
+    //    }
+
+    //    Connections { //TODO: Implement a recent dictionariies context action set
+    //        target: toButton
+
+    //        onClicked: {
+    //            opento()
+    //        }
+    //    }
+
     actions {
         main: Kirigami.Action {
             iconName: "qrc:///go-home-large-16.svg"
@@ -90,11 +116,27 @@ Kirigami.ScrollablePage {
     mainItem: Column {
         spacing: Kirigami.Units.gridUnit
         
-        Controls.Label {
-            text:  qsTr(Dicts.glosbit.dictionary_list[searchPage.from].language + " > " + Dicts.glosbit.dictionary_list[searchPage.to].language)
-            color: Kirigami.Theme.textColor
-            font.pixelSize: Kirigami.Units.gridUnit
+        Row {
+            Controls.ToolButton {
+                id: fromButton
+                text:  qsTr(Dicts.glosbit.dictionary_list[searchPage.from].language)
+//                color: Kirigami.Theme.textColor
+//                font.pixelSize: Kirigami.Units.gridUnit
+            }
+
+            Controls.ToolButton {
+                id: direction
+                text: ">"
+            }
+
+            Controls.ToolButton {
+                id: toButton
+                text:  qsTr(Dicts.glosbit.dictionary_list[searchPage.to].language)
+//                color: Kirigami.Theme.textColor
+//                font.pixelSize: Kirigami.Units.gridUnit
+            }
         }
+
     
         Row {
             id: searchRow
