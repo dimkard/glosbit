@@ -86,13 +86,13 @@ Kirigami.ScrollablePage {
         }
     }
 
-    Connections {
-        target: direction
-
-        onClicked: {
-            changedirection()
-        }
-    }
+//     Connections { //TODO: Fix issue when changing directions
+//         target: direction
+// 
+//         onClicked: {
+//             changedirection()
+//         }
+//     }
 
 
     actions {
@@ -121,6 +121,7 @@ Kirigami.ScrollablePage {
         Row {
             Controls.ToolButton {
                 id: fromButton
+
                 text:  searchPage.fromLanguage
                 onClicked: bottomDrawer.slideDrawer("from")
 
@@ -128,6 +129,7 @@ Kirigami.ScrollablePage {
 
             Controls.ToolButton {
                 id: direction
+ 
                 text: ">"
             }
 
