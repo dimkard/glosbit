@@ -17,7 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.0 as Controls
 import org.kde.kirigami 2.1 as Kirigami
@@ -94,21 +94,6 @@ Kirigami.ScrollablePage {
         }
     }
 
-    //    Connections { //TODO: Implement a recent dictionariies context action set
-    //        target: fromButton
-
-    //        onClicked: {
-    //           openfrom()
-    //        }
-    //    }
-
-    //    Connections { //TODO: Implement a recent dictionariies context action set
-    //        target: toButton
-
-    //        onClicked: {
-    //            opento()
-    //        }
-    //    }
 
     actions {
         main: Kirigami.Action {
@@ -129,8 +114,10 @@ Kirigami.ScrollablePage {
 
 
     mainItem: Column {
+        property int elements: 3
         spacing: Kirigami.Units.gridUnit
-        
+        height: searchPage.height - Kirigami.Units.gridUnit*(elements-1) - Kirigami.Units.iconSizes.large
+        topPadding : searchPage.height - childrenRect.height - Kirigami.Units.gridUnit*(elements-1) - Kirigami.Units.iconSizes.large
         Row {
             Controls.ToolButton {
                 id: fromButton
@@ -186,25 +173,28 @@ Kirigami.ScrollablePage {
         }
     }
 
+    Component {
+        id: listModel
+        
+        ListModel {
+        }
+    }
+
+    Component {
+        id: listItem
+        
+        ListElement {
+        }
+    }
+    
     Kirigami.OverlayDrawer {
         id: bottomDrawer
 
         property string dictionaryType
 
         edge: Qt.BottomEdge
-        height: searchPage.height / 2
+        height: searchPage.height / 3
 
-        Component {
-            id: listModel
-            ListModel {
-            }
-        }
-
-        Component {
-            id: listItem
-            ListElement {
-            }
-        }
 
         function slideDrawer(fromTo) {
             bottomDrawer.dictionaryType = fromTo;
@@ -220,22 +210,35 @@ Kirigami.ScrollablePage {
         contentItem:
             ListView {
                 id: dictionaryList
+
                 clip: true
                 spacing: Kirigami.Units.gridUnit
+                
 
-                delegate: Controls.ToolButton {
-                    text: language
-                    onClicked: {
-                        if (type === "from") {
-                            searchPage.fromCode = code;
-                            searchPage.setsource();
-                        }
-                        else {
-                            searchPage.toCode = code;
-                            searchPage.settarget();
-                        }
-                    }
-                }
+                delegate: dictionaryDelegate
             }
     }
+
+    Component {
+        id: dictionaryDelegate
+
+        Kirigami.BasicListItem {
+            text: language
+            
+            onClicked: {
+                if (type === "from") {
+                    searchPage.fromCode = code;
+                    searchPage.setsource();
+                    bottomDrawer.close();
+                    
+                }
+                else {
+                    searchPage.toCode = code;
+                    searchPage.settarget();
+                    bottomDrawer.close();
+                }
+            }
+        }
+    }
+    
 }
