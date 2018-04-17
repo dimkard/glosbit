@@ -1,3 +1,4 @@
 *.deb
 *.plasmoid
-build/
+build*/
+CMakeLists.txt.user
