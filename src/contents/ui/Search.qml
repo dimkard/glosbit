@@ -27,18 +27,33 @@ Kirigami.ScrollablePage {
     id: searchPage
 
     property variant palette
-    property string from
-    property string to
+    property string fromCode
+    property string toCode
+    property string fromLanguage
+    property string toLanguage
     property alias search_string: searchField.text
 
     signal gosearch
     signal goleft
     signal goright
     signal shown
-    signal openfrom
-    signal opento
+    signal setsource
+    signal settarget
     signal changedirection
 
+    onFromCodeChanged: {
+        var fromDictionary = Dicts.glosbit.dictionary_list.find(function( obj ) {
+            return obj.code === fromCode;
+        });
+        searchPage.fromLanguage = fromDictionary.language;
+    }
+
+    onToCodeChanged: {
+        var toDictionary = Dicts.glosbit.dictionary_list.find(function( obj ) {
+            return obj.code === toCode;
+        });
+        searchPage.toLanguage = toDictionary.language;
+    }
     Timer {
         interval: 0
         running: true
@@ -119,9 +134,9 @@ Kirigami.ScrollablePage {
         Row {
             Controls.ToolButton {
                 id: fromButton
-                text:  qsTr(Dicts.glosbit.dictionary_list[searchPage.from].language)
-//                color: Kirigami.Theme.textColor
-//                font.pixelSize: Kirigami.Units.gridUnit
+                text:  searchPage.fromLanguage
+                onClicked: bottomDrawer.slideDrawer("from")
+
             }
 
             Controls.ToolButton {
@@ -131,9 +146,9 @@ Kirigami.ScrollablePage {
 
             Controls.ToolButton {
                 id: toButton
-                text:  qsTr(Dicts.glosbit.dictionary_list[searchPage.to].language)
-//                color: Kirigami.Theme.textColor
-//                font.pixelSize: Kirigami.Units.gridUnit
+                text:  searchPage.toLanguage
+                onClicked: bottomDrawer.slideDrawer("to")
+
             }
         }
 
@@ -169,5 +184,58 @@ Kirigami.ScrollablePage {
                 text: qsTr("Go")
             }
         }
+    }
+
+    Kirigami.OverlayDrawer {
+        id: bottomDrawer
+
+        property string dictionaryType
+
+        edge: Qt.BottomEdge
+        height: searchPage.height / 2
+
+        Component {
+            id: listModel
+            ListModel {
+            }
+        }
+
+        Component {
+            id: listItem
+            ListElement {
+            }
+        }
+
+        function slideDrawer(fromTo) {
+            bottomDrawer.dictionaryType = fromTo;
+            var lmodel = listModel.createObject(dictionaryList);
+
+            for (var i=0; i <Dicts.glosbit.dictionary_amt; ++i) {
+                   lmodel.append({type: fromTo,  language: Dicts.glosbit.dictionary_list[i].language,  code: Dicts.glosbit.dictionary_list[i].code });
+            }
+            dictionaryList.model = lmodel ;
+            open();
+        }
+
+        contentItem:
+            ListView {
+                id: dictionaryList
+                clip: true
+                spacing: Kirigami.Units.gridUnit
+
+                delegate: Controls.ToolButton {
+                    text: language
+                    onClicked: {
+                        if (type === "from") {
+                            searchPage.fromCode = code;
+                            searchPage.setsource();
+                        }
+                        else {
+                            searchPage.toCode = code;
+                            searchPage.settarget();
+                        }
+                    }
+                }
+            }
     }
 }

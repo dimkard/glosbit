@@ -28,8 +28,8 @@ Kirigami.ScrollablePage {
     id: root
 
     property string type: "" // or "example"
-    property int from
-    property int to
+    property string fromCode
+    property string toCode
     property string search_string
 
     signal goleft
@@ -134,6 +134,6 @@ Kirigami.ScrollablePage {
     }
 
     Component.onCompleted: {
-        Utils.getModelData(root.search_string, root.type, resultsModel, Dicts.glosbit.dictionary_list[from].code, Dicts.glosbit.dictionary_list[to].code);
+        Utils.getModelData(root.search_string, root.type, resultsModel, root.fromCode, root.toCode);
     }
 }
