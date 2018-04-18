@@ -54,6 +54,7 @@ Kirigami.ScrollablePage {
         });
         searchPage.toLanguage = toDictionary.language;
     }
+
     Timer {
         interval: 0
         running: true
@@ -118,7 +119,9 @@ Kirigami.ScrollablePage {
         spacing: Kirigami.Units.gridUnit
         height: searchPage.height - Kirigami.Units.gridUnit*(elements-1) - Kirigami.Units.iconSizes.large
         topPadding : searchPage.height - childrenRect.height - Kirigami.Units.gridUnit*(elements-1) - Kirigami.Units.iconSizes.large
+
         Row {
+            anchors.horizontalCenter: parent.horizontalCenter
             Controls.ToolButton {
                 id: fromButton
 
@@ -135,6 +138,7 @@ Kirigami.ScrollablePage {
 
             Controls.ToolButton {
                 id: toButton
+
                 text:  searchPage.toLanguage
                 onClicked: bottomDrawer.slideDrawer("to")
 
@@ -146,6 +150,7 @@ Kirigami.ScrollablePage {
             id: searchRow
 
             spacing: Kirigami.Units.gridUnit
+            anchors.horizontalCenter: parent.horizontalCenter
 
             Controls.TextField {
                 id: searchField

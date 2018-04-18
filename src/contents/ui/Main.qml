@@ -103,8 +103,7 @@ Kirigami.ApplicationWindow {
             fromCode: root.fromCode
             toCode: root.toCode
             title: qsTr("Search")
-
-
+            anchors.fill: parent
             onGosearch: {
                 pageStack.push(translationComponent, {search_string: search_string})
             }
