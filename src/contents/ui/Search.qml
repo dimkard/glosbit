@@ -104,12 +104,12 @@ Kirigami.ScrollablePage {
 
         left: Kirigami.Action {
             iconName: "go-previous"
-            text: qsTr("Left")
+            text: qsTr("Back")
         }
 
         right: Kirigami.Action {
             iconName: "go-next"
-            text: qsTr("Right")
+            text: qsTr("Forward")
         }
     }
 
@@ -134,6 +134,10 @@ Kirigami.ScrollablePage {
                 id: direction
  
                 text: ">"
+
+                onClicked: showPassiveNotification(searchPage.fromLanguage + qsTr(" to ") + searchPage.toLanguage);
+
+
             }
 
             Controls.ToolButton {

@@ -74,12 +74,12 @@ Kirigami.ScrollablePage {
             id: prev
 
             iconName: "go-previous"
-            text: qsTr("Left")
+            text: qsTr("Back")
         }
 
         right: Kirigami.Action {
             iconName: "go-next"
-            text: qsTr("Right")
+            text: qsTr("Forward")
         }
     }
 
