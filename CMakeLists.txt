@@ -44,7 +44,7 @@ endif()
 
 ################# now find all used packages #################
 
-set (QT_MIN_VERSION "5.5.0")
+set (QT_MIN_VERSION "5.6.0")
 
 find_package(PkgConfig)
 #########################################################################
