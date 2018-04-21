@@ -1,0 +1,11 @@
+Version 1.1
+Remember dictionary selection, fixes #1
+Provide an easy way to change dictionary by clicking to language text
+Put search input and button at the bottom of the search page, following Kirigami guidelines for single-hand usage
+Align search page items to the center of the bottom of the page
+Update Qt version requirement
+Changed action items' literals
+
+
+Version 1.0
+First release
