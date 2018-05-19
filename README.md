@@ -16,7 +16,9 @@ kirigami2-dev
 
 mkdir build  
 cd build  
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr ..  
+cmake -DKDE_INSTALL_USE_QT_SYS_PATHS=ON  ..  
 make  
 (sudo) make install  
 
+This will install Glosbit to /usr/local since CMAKE_INSTALL_PREFIX variable normally defaults to /usr/local. If you want to change installation directory (e.g. to /usr) change cmake line to:
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr -DKDE_INSTALL_USE_QT_SYS_PATHS=ON  ..  
