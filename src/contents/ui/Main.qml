@@ -17,10 +17,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.1
-import QtQuick.Layouts 1.2
-import QtQuick.Controls 2.0 as Controls
-import org.kde.kirigami 2.0 as Kirigami
+import QtQuick 2.6
+import QtQuick.Controls 2.4 as Controls
+import org.kde.kirigami 2.5 as Kirigami
 import org.kde.glosbit 1.0 as Glosbit
 import "./dictionaries.js" as Dicts
 
@@ -54,11 +53,6 @@ Kirigami.ApplicationWindow {
         contentItem.implicitWidth: Math.min (Kirigami.Units.gridUnit * 15, root.width * 0.8)
 
         topContent: Column {
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: Kirigami.Units.smallSpacing
-            }
 
             spacing: Kirigami.Units.gridUnit * 2
 
@@ -103,7 +97,7 @@ Kirigami.ApplicationWindow {
             fromCode: root.fromCode
             toCode: root.toCode
             title: qsTr("Search")
-            anchors.fill: parent
+
             onGosearch: {
                 pageStack.push(translationComponent, {search_string: search_string})
             }
@@ -182,9 +176,9 @@ Kirigami.ApplicationWindow {
     }
     footer: Controls.Label {
             text:  qsTr("Powered by glosbe.com")
-            color: Kirigami.Theme.textColor
+//            color: Kirigami.Theme.textColor
             horizontalAlignment:  Text.AlignHCenter
-            width: parent.width
+//            width: parent.width
             font.pixelSize: Kirigami.Units.gridUnit*2/3
     }
     

@@ -17,10 +17,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.7
-import QtQuick.Layouts 1.2
-import QtQuick.Controls 2.0 as Controls
-import org.kde.kirigami 2.1 as Kirigami
+import QtQuick 2.6
+import QtQuick.Controls 2.4 as Controls
+import org.kde.kirigami 2.5 as Kirigami
 import "./dictionaries.js" as Dicts
 
 Kirigami.ScrollablePage {
@@ -45,6 +44,7 @@ Kirigami.ScrollablePage {
         var fromDictionary = Dicts.glosbit.dictionary_list.find(function( obj ) {
             return obj.code === fromCode;
         });
+
         searchPage.fromLanguage = fromDictionary.language;
     }
 
@@ -52,12 +52,14 @@ Kirigami.ScrollablePage {
         var toDictionary = Dicts.glosbit.dictionary_list.find(function( obj ) {
             return obj.code === toCode;
         });
+
         searchPage.toLanguage = toDictionary.language;
     }
 
     Timer {
         interval: 0
         running: true
+
         onTriggered: {
             searchPage.shown()
         }
@@ -87,18 +89,9 @@ Kirigami.ScrollablePage {
         }
     }
 
-//     Connections { //TODO: Fix issue when changing directions
-//         target: direction
-// 
-//         onClicked: {
-//             changedirection()
-//         }
-//     }
-
-
     actions {
         main: Kirigami.Action {
-            iconName: "qrc:///go-home-large-16.svg"
+            iconName: "go-home"
             text: qsTr("Home")
         }
 
@@ -114,72 +107,92 @@ Kirigami.ScrollablePage {
     }
 
 
-    mainItem: Column {
-        property int elements: 3
-        spacing: Kirigami.Units.gridUnit
-        height: searchPage.height - Kirigami.Units.gridUnit*(elements-1) - Kirigami.Units.iconSizes.large
-        topPadding : searchPage.height - childrenRect.height - Kirigami.Units.gridUnit*(elements-1) - Kirigami.Units.iconSizes.large
+    mainItem: Item {
 
-        Row {
-            anchors.horizontalCenter: parent.horizontalCenter
-            Controls.ToolButton {
-                id: fromButton
+        height: searchPage.height
+        width: searchPage.width
 
-                text:  searchPage.fromLanguage
-                onClicked: bottomDrawer.slideDrawer("from")
+        Column {
+            id: searchPageColumn
 
-            }
+            property int elements: 3
 
-            Controls.ToolButton {
-                id: direction
- 
-                text: ">"
-
-                onClicked: showPassiveNotification(searchPage.fromLanguage + qsTr(" to ") + searchPage.toLanguage);
-
-
-            }
-
-            Controls.ToolButton {
-                id: toButton
-
-                text:  searchPage.toLanguage
-                onClicked: bottomDrawer.slideDrawer("to")
-
-            }
-        }
-
-    
-        Row {
-            id: searchRow
-
+            anchors.centerIn: parent
             spacing: Kirigami.Units.gridUnit
-            anchors.horizontalCenter: parent.horizontalCenter
+            height:  childrenRect.height
+            //        topPadding : searchPage.height - childrenRect.height - Kirigami.Units.gridUnit*(elements-1) - Kirigami.Units.iconSizes.large
 
-            Controls.TextField {
-                id: searchField
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
 
-                focus: true
-                placeholderText: qsTr("Search...")
-                Component.onCompleted: forceActiveFocus()
+                Controls.ToolButton {
+                    id: fromButton
 
-                Keys.onPressed: {
-                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                        searchRowButton.clicked();
-                    }
+                    text:  searchPage.fromLanguage
+
+                    onClicked: bottomDrawer.slideDrawer("from")
                 }
-                Connections {
-                    ignoreUnknownSignals: true
-                    target: searchPage
-                    onShown: {
-                        searchField.forceActiveFocus()
-                    }
+
+                Controls.ToolButton {
+                    id: direction
+
+                    text: ">"
+
+                    onClicked: showPassiveNotification(searchPage.fromLanguage + qsTr(" to ") + searchPage.toLanguage);
+
+                }
+
+                Controls.ToolButton {
+                    id: toButton
+
+                    text:  searchPage.toLanguage
+
+                    onClicked: bottomDrawer.slideDrawer("to")
+
                 }
             }
-            
-            Controls.Button {
-                id: searchRowButton
-                text: qsTr("Go")
+
+
+            Row {
+                id: searchRow
+
+                spacing: Kirigami.Units.gridUnit
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Controls.TextField {
+                    id: searchField
+
+                    focus: true
+                    placeholderText: qsTr("Search...")
+                    color: Kirigami.Theme.textColor
+                    height: Kirigami.Units.iconSizes.medium
+                    width: ( searchPage.width - searchRowButton.width) * 2/3
+
+                    Component.onCompleted: forceActiveFocus()
+
+                    Keys.onPressed: {
+                        if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                            searchRowButton.clicked();
+                        }
+                    }
+
+                    Connections {
+                        ignoreUnknownSignals: true
+                        target: searchPage
+
+                        onShown: {
+                            searchField.forceActiveFocus()
+                        }
+                    }
+                }
+
+                Controls.Button {
+                    id: searchRowButton
+
+                    icon.name: "search"
+                    height: Kirigami.Units.iconSizes.medium
+                    //                    text: qsTr("Go")
+                }
             }
         }
     }
@@ -187,15 +200,13 @@ Kirigami.ScrollablePage {
     Component {
         id: listModel
         
-        ListModel {
-        }
+        ListModel { }
     }
 
     Component {
         id: listItem
         
-        ListElement {
-        }
+        ListElement { }
     }
     
     Kirigami.OverlayDrawer {
@@ -212,7 +223,7 @@ Kirigami.ScrollablePage {
             var lmodel = listModel.createObject(dictionaryList);
 
             for (var i=0; i <Dicts.glosbit.dictionary_amt; ++i) {
-                   lmodel.append({type: fromTo,  language: Dicts.glosbit.dictionary_list[i].language,  code: Dicts.glosbit.dictionary_list[i].code });
+                lmodel.append({type: fromTo,  language: Dicts.glosbit.dictionary_list[i].language,  code: Dicts.glosbit.dictionary_list[i].code });
             }
             dictionaryList.model = lmodel ;
             open();
@@ -220,14 +231,13 @@ Kirigami.ScrollablePage {
 
         contentItem:
             ListView {
-                id: dictionaryList
 
-                clip: true
-                spacing: Kirigami.Units.gridUnit
-                
+            id: dictionaryList
 
-                delegate: dictionaryDelegate
-            }
+            clip: true
+            spacing: Kirigami.Units.gridUnit
+            delegate: dictionaryDelegate
+        }
     }
 
     Component {
@@ -241,7 +251,6 @@ Kirigami.ScrollablePage {
                     searchPage.fromCode = code;
                     searchPage.setsource();
                     bottomDrawer.close();
-                    
                 }
                 else {
                     searchPage.toCode = code;
@@ -251,5 +260,4 @@ Kirigami.ScrollablePage {
             }
         }
     }
-    
 }
