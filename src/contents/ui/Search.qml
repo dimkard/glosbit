@@ -189,9 +189,9 @@ Kirigami.ScrollablePage {
                 Controls.Button {
                     id: searchRowButton
 
-                    icon.name: "search"
+//                    icon.name: "search"
                     height: Kirigami.Units.iconSizes.medium
-                    //                    text: qsTr("Go")
+                    text: qsTr("Go")
                 }
             }
         }
