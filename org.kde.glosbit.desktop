@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Glosbit
 Comment=Dictionary application powered by glosbe.com
-Version=1.1
+Version=1.2
 Exec=glosbit
 MimeType=application/x-glosbit;
 Icon=languages
